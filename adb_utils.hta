@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="adb_utils.css" type="text/css" />
+        <script type="text/vbscript" src="adb_utils.vbs"></script>
+        <script language="vbscript">
+            <!--
+            ' アプリをインストールする
+            Function installApp()
+                Dim frm
+                Set frm = document.installer
+                install(frm.input_file.value)
+            End Function
+
+            'アプリをアンインストールする
+            Function uninstallApp()
+                Dim frm
+                Set frm = document.uninstaller
+                uninstall(frm.input_text.value)
+            End Function
+
+            '文字列を入力する
+            Function inputText()
+                Dim frm
+                Set frm = document.adb_input
+                sendText(frm.input_text.value)
+            End Function
+            -->
+        </script>
+        <title>adb utils</title>
+    </head>
+    <body>
+        <h2>アプリのインストール</h2>
+        <form name="installer">
+            <input type="file" name="input_file" style="width:300px" />
+            <input type="button" value="インストール" OnClick="installApp" />
+        </form>
+        <h2>アプリのアンインストール</h2>
+        <form name="uninstaller">
+            <input type="input" value="" name="input_text" style="width:300px" />
+            <input type="button" value="アンインストール" OnClick="uninstallApp" />
+        </form>
+        <h2>文字の入力</h2>
+        <form name="adb_input" onSubmit="inputText(); return false;" language="jscript" class="form-horizontal" >
+            <input type="input" name="input_text" style="width:300px" />
+            <input type="submit" value="送信" class="btn-primary" />
+            <input type="reset" value="クリア" class="btn" />
+        </form>
+        <h2>仮想キーボード</h2>
+        <form name="adb_input_keycode" onSubmit="return false;" language="jscript">
+            <table>
+                <tr>
+                    <td><input type="button" value="BACK" onClick="sendKey(VK_BACK)" class="key" /></td>
+                    <td><input type="button" value="HOME" onClick="sendKey(VK_HOME)" class="key" /></td>
+                    <td><input type="button" value="MENU" onClick="sendKey(VK_MENU)" class="key" /></td>
+                </tr>
+                <tr>
+                    <td>*</td>
+                    <td><input type="button" value="↑" onClick="sendKey(VK_UP)" class="key" /></td>
+                    <td>*</td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="←" onClick="sendKey(VK_LEFT)" class="key" /></td>
+                    <td><input type="button" value="◯" onClick="sendKey(VK_CENTER)" class="key" /></td>
+                    <td><input type="button" value="→" onClick="sendKey(VK_RIGHT)" class="key" /></td>
+                </tr>
+                <tr>
+                    <td>*</td>
+                    <td><input type="button" value="↓" onClick="sendKey(VK_DOWN)" class="key" /></td>
+                    <td>*</td>
+                </tr>
+            </table>
+            <br />
+
+            <input type="button" value="DEL" onClick="sendKey(VK_DELETE)" class="key" />
+            <input type="button" value="ENTER" onClick="sendKey(VK_ENTER)" class="key" />
+            <input type="button" value="検索" onClick="sendKey(VK_SEARCH)" class="key" />
+
+        </form>
+    </body>
+</html>
+
