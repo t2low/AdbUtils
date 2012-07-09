@@ -1,3 +1,4 @@
+'キーコード
 Public Const VK_HOME = 3
 Public Const VK_BACK = 4
 Public Const VK_MENU =82 
@@ -20,8 +21,19 @@ Public Const VK_VOL_MUTE = 91
 Dim objWShell
 Set objWShell = CreateObject("WScript.Shell")
 
+'コマンド実行
 Private Function run(cmd)
     objWShell.Run cmd, 0, True
+End Function
+
+'コマンド実行
+Function exec(cmd)
+    Set objExec = objWShell.Exec(cmd)
+    strLine = ""
+    Do Until objExec.StdOut.AtEndOfStream
+        strLine = strLine & objExec.StdOut.ReadLine & vbCrLf
+    Loop
+    exec = strLine
 End Function
 
 'adb install を実行する
