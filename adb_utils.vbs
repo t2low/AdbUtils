@@ -57,3 +57,4 @@ Function sendKey(keycode)
     run("adb shell input keyevent " & keycode)
 End Function
 
+
