@@ -57,4 +57,22 @@ Function sendKey(keycode)
     run("adb shell input keyevent " & keycode)
 End Function
 
+' Android端末の列挙
+Function listDevices()
+    Dim devices()
+    Dim devs
+    result = exec("adb devices")
+    devs = Split(result, vbCrLf, -1)
+    cnt = UBound(devs)
+    If cnt > 2 Then
+        Redim devices(cnt - 2)
+        For i = 1 To cnt - 2
+            devAndState = Split(devs(i), vbTab, -1)
+            If UBound(devAndState) > 0 Then
+                devices(i-1) = devAndState(0)
+            End If
+        Next
+    End If
+    listDevices = devices
+End Function
 

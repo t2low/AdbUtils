@@ -7,6 +7,9 @@ h2 {
 td {
     text-align: center;
 }
+select {
+    width:200px;
+}
 
 .key {
     width: 54px;

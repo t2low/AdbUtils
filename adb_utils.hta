@@ -25,11 +25,30 @@
                 Set frm = document.adb_input
                 sendText(frm.input_text.value)
             End Function
+
+            Sub updateDevices()
+                Dim frm
+                Set frm = document.devices
+                Set list = frm.list
+                devs = listDevices()
+                cnt = UBound(devs)
+                list.options.length = cnt
+                For i = 0 To cnt - 1
+                    list.options(i).text = devs(i)
+                    list.options(i).value = i
+                Next
+            End Sub
             -->
         </script>
         <title>adb utils</title>
     </head>
     <body>
+        <h2>Android端末一覧</h2>
+        <form name="devices">
+            <select name="list">
+            </select>
+            <input type="button" value="更新" onClick="updateDevices" />
+        </form>
         <h2>アプリのインストール</h2>
         <form name="installer">
             <input type="file" name="input_file" style="width:300px" />
