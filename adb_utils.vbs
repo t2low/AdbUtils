@@ -76,3 +76,22 @@ Function listDevices()
     listDevices = devices
 End Function
 
+' パッケージの列挙
+Function listPackages()
+    Dim packages()
+    Dim pkgs
+    result = exec("adb shell pm list package")
+    pkgs = Split(result, vbCrLf, -1)
+    cnt = UBound(pkgs)
+    If cnt > 1 Then
+        Redim packages(cnt - 1)
+        For i = 0 To cnt - 1
+            pkg = Split(pkgs(i), ":", -1)
+            If UBound(pkg) >= 1 Then
+                packages(i) = pkg(1)
+            End If
+        Next
+    End If
+    listPackages = packages
+End Function
+

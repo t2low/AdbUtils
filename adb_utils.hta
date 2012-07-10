@@ -26,17 +26,36 @@
                 sendText(frm.input_text.value)
             End Function
 
+            ' 端末列挙
             Sub updateDevices()
                 Dim frm
                 Set frm = document.devices
                 Set list = frm.list
                 devs = listDevices()
                 cnt = UBound(devs)
-                list.options.length = cnt
-                For i = 0 To cnt - 1
-                    list.options(i).text = devs(i)
-                    list.options(i).value = i
-                Next
+                If cnt > 0 Then
+                    list.options.length = cnt
+                    For i = 0 To cnt - 1
+                        list.options(i).text = devs(i)
+                        list.options(i).value = i
+                    Next
+                End If
+            End Sub
+
+            ' パッケージ列挙
+            Sub updatePackages()
+                Dim frm
+                Set frm = document.uninstaller
+                Set list = frm.list
+                pkgs = listPackages()
+                cnt = UBound(pkgs)
+                If cnt > 0 Then
+                    list.options.length = cnt
+                    For i = 0 To cnt - 1
+                        list.options(i).text = pkgs(i)
+                        list.options(i).value = i
+                    Next
+                End If
             End Sub
             -->
         </script>
@@ -56,6 +75,9 @@
         </form>
         <h2>アプリのアンインストール</h2>
         <form name="uninstaller">
+            <select name="list">
+            </select>
+            <input type="button" value="更新" OnClick="updatePackages" />
             <input type="input" value="" name="input_text" style="width:300px" />
             <input type="button" value="アンインストール" OnClick="uninstallApp" />
         </form>
