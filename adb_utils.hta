@@ -2,28 +2,31 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" href="adb_utils.css" type="text/css" />
-        <script type="text/vbscript" src="adb_utils.vbs"></script>
+        <script type="text/vbscript" src="AdbUtil.vbs"></script>
         <script language="vbscript">
             <!--
+            Dim adb
+            Set adb = new AdbUtli
+
             ' アプリをインストールする
             Function installApp()
                 Dim frm
                 Set frm = document.installer
-                install(frm.input_file.value)
+                adb.install(frm.input_file.value)
             End Function
 
             'アプリをアンインストールする
             Function uninstallApp()
                 Dim frm
                 Set frm = document.uninstaller
-                uninstall(frm.input_text.value)
+                adb.uninstall(frm.input_text.value)
             End Function
 
             '文字列を入力する
             Function inputText()
                 Dim frm
                 Set frm = document.adb_input
-                sendText(frm.input_text.value)
+                adb.sendText(frm.input_text.value)
             End Function
 
             ' 端末列挙
@@ -31,7 +34,7 @@
                 Dim frm
                 Set frm = document.devices
                 Set list = frm.list
-                devs = listDevices()
+                devs = adb.listDevices()
                 cnt = UBound(devs)
                 If cnt > 0 Then
                     list.options.length = cnt
@@ -47,7 +50,7 @@
                 Dim frm
                 Set frm = document.uninstaller
                 Set list = frm.list
-                pkgs = listPackages()
+                pkgs = adb.listPackages()
                 cnt = UBound(pkgs)
                 If cnt > 0 Then
                     list.options.length = cnt
@@ -91,31 +94,31 @@
         <form name="adb_input_keycode" onSubmit="return false;" language="jscript">
             <table>
                 <tr>
-                    <td><input type="button" value="BACK" onClick="sendKey(VK_BACK)" class="key" /></td>
-                    <td><input type="button" value="HOME" onClick="sendKey(VK_HOME)" class="key" /></td>
-                    <td><input type="button" value="MENU" onClick="sendKey(VK_MENU)" class="key" /></td>
+                    <td><input type="button" value="BACK" onClick="adb.sendKey(VK_BACK)" class="key" /></td>
+                    <td><input type="button" value="HOME" onClick="adb.sendKey(VK_HOME)" class="key" /></td>
+                    <td><input type="button" value="MENU" onClick="adb.sendKey(VK_MENU)" class="key" /></td>
                 </tr>
                 <tr>
                     <td>*</td>
-                    <td><input type="button" value="↑" onClick="sendKey(VK_UP)" class="key" /></td>
+                    <td><input type="button" value="↑" onClick="adb.sendKey(VK_UP)" class="key" /></td>
                     <td>*</td>
                 </tr>
                 <tr>
-                    <td><input type="button" value="←" onClick="sendKey(VK_LEFT)" class="key" /></td>
-                    <td><input type="button" value="◯" onClick="sendKey(VK_CENTER)" class="key" /></td>
-                    <td><input type="button" value="→" onClick="sendKey(VK_RIGHT)" class="key" /></td>
+                    <td><input type="button" value="←" onClick="adb.sendKey(VK_LEFT)" class="key" /></td>
+                    <td><input type="button" value="◯" onClick="adb.sendKey(VK_CENTER)" class="key" /></td>
+                    <td><input type="button" value="→" onClick="adb.sendKey(VK_RIGHT)" class="key" /></td>
                 </tr>
                 <tr>
                     <td>*</td>
-                    <td><input type="button" value="↓" onClick="sendKey(VK_DOWN)" class="key" /></td>
+                    <td><input type="button" value="↓" onClick="adb.sendKey(VK_DOWN)" class="key" /></td>
                     <td>*</td>
                 </tr>
             </table>
             <br />
 
-            <input type="button" value="DEL" onClick="sendKey(VK_DELETE)" class="key" />
-            <input type="button" value="ENTER" onClick="sendKey(VK_ENTER)" class="key" />
-            <input type="button" value="検索" onClick="sendKey(VK_SEARCH)" class="key" />
+            <input type="button" value="DEL" onClick="adb.sendKey(VK_DELETE)" class="key" />
+            <input type="button" value="ENTER" onClick="adb.sendKey(VK_ENTER)" class="key" />
+            <input type="button" value="検索" onClick="adb.sendKey(VK_SEARCH)" class="key" />
 
         </form>
     </body>
