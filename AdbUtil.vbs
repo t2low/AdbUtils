@@ -62,6 +62,11 @@ Class AdbUtli
         End If
     End Function
 
+    'デバイスの選択
+    public Sub setDevice(dev)
+        device = dev
+    End Sub
+
     'adb install を実行する
     Public Function install(filename)
         run(createCmd("install") & """" & filename & """")
