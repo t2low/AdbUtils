@@ -61,6 +61,9 @@
                         list.options(i).text = pkgs(i)
                         list.options(i).value = i
                     Next
+
+                    ' パッケージの初期選択
+                    onChangePackages()
                 End If
             End Sub
 
@@ -69,6 +72,14 @@
                 Dim list
                 Set list = document.devices.list
                 adb.setDevice(list.options(list.selectedIndex).text)
+            End Sub
+
+            ' パッケージの切り替え
+            Sub onChangePackages()
+                Dim list
+                Set text = document.uninstaller.input_text
+                Set list = document.uninstaller.list
+                text.value = list.options(list.selectedIndex).text
             End Sub
             -->
         </script>
@@ -88,9 +99,9 @@
         </form>
         <h2>アプリのアンインストール</h2>
         <form name="uninstaller">
-            <select name="list">
+            <select name="list" onChange="onChangePackages()">
             </select>
-            <input type="button" value="更新" OnClick="updatePackages" />
+            <input type="button" value="更新" OnClick="updatePackages" /><br />
             <input type="input" value="" name="input_text" style="width:300px" />
             <input type="button" value="アンインストール" OnClick="uninstallApp" />
         </form>
