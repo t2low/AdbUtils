@@ -3,6 +3,7 @@ h2 {
     color:white;
     background-color: black;
     padding:4px;
+    margin:4px;
 }
 td {
     text-align: center;
@@ -10,9 +11,16 @@ td {
 select {
     width:300px;
 }
+form {
+    margin:4px;
+}
+input {
+    margin:1px;
+}
 
 .key {
     width: 54px;
     height: 32px;
+    margin:0px;
 }
 
