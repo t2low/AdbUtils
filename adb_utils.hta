@@ -81,6 +81,26 @@
                 Set list = document.uninstaller.list
                 text.value = list.options(list.selectedIndex).text
             End Sub
+
+            ' デバイスの接続
+            Sub connect()
+                Dim frm
+                Dim ip
+                Set frm = document.adb_connect
+                ip = frm.ip_addr1.value & "." & frm.ip_addr2.value & "." & frm.ip_addr3.value & "." & frm.ip_addr4.value
+                adb.connect(ip)
+                updateDevices()
+            End Sub
+
+            ' デバイスの切断
+            Sub disconnect()
+                Dim frm
+                Dim ip
+                Set frm = document.adb_connect
+                ip = frm.ip_addr1.value & "." & frm.ip_addr2.value & "." & frm.ip_addr3.value & "." & frm.ip_addr4.value
+                adb.disconnect(ip)
+                updateDevices()
+            End Sub
             -->
         </script>
         <title>adb utils</title>
@@ -141,6 +161,16 @@
             <input type="button" value="ENTER" onClick="adb.sendKey(VK_ENTER)" class="key" />
             <input type="button" value="検索" onClick="adb.sendKey(VK_SEARCH)" class="key" />
 
+        </form>
+        <h2>ネットワークでの接続</h2>
+        <form name="adb_connect" language="jscript" class="form-horizontal" >
+            端末のIP ADDRESS : 
+            <input type="input" name="ip_addr1" value="192" style="width:3em; text-align:center;" />.
+            <input type="input" name="ip_addr2" value="168" style="width:3em; text-align:center;" />.
+            <input type="input" name="ip_addr3" value="1" style="width:3em; text-align:center;" />.
+            <input type="input" name="ip_addr4" value="" style="width:3em; text-align:center;" />
+            <input type="button" value="接続" onClick="connect()" class="key" />
+            <input type="button" value="切断" onClick="disconnect()" class="key" />
         </form>
     </body>
 </html>

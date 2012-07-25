@@ -88,6 +88,16 @@ Class AdbUtli
         run(createCmd("shell input keyevent") & keycode)
     End Function
 
+    ' adb connect を実行する
+    Public Function connect(ipaddr)
+        run("adb connect " & ipaddr)
+    End Function
+
+    ' adb disconnect を実行する
+    Public Function disconnect(ipaddr)
+        run("adb disconnect " & ipaddr)
+    End Function
+
     ' Android端末の列挙
     Public Function listDevices()
         Dim result
