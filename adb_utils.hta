@@ -12,7 +12,11 @@
             Function installApp()
                 Dim frm
                 Set frm = document.installer
-                adb.install(frm.input_file.value)
+                If frm.update.checked Then
+                    adb.update(frm.input_file.value)
+                Else
+                    adb.install(frm.input_file.value)
+                End If
             End Function
 
             'アプリをアンインストールする
@@ -116,6 +120,7 @@
         <form name="installer">
             <input type="file" name="input_file" style="width:300px" />
             <input type="button" value="インストール" OnClick="installApp" />
+            <input type="checkbox" name="update" />上書き
         </form>
         <h2>アプリのアンインストール</h2>
         <form name="uninstaller">

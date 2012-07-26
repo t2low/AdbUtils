@@ -72,6 +72,11 @@ Class AdbUtli
         run(createCmd("install") & """" & filename & """")
     End Function
 
+    'adb install -r を実行する
+    Public Function update(filename)
+        run(createCmd("install -r") & """" & filename & """")
+    End Function
+
     'adb uninstall を実行する
     Public Function uninstall(packagename)
         run(createCmd("uninstall") & packagename)
