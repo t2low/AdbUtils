@@ -5,6 +5,7 @@ Public Const VK_HOME = 3
 Public Const VK_BACK = 4
 Public Const VK_MENU =82 
 Public Const VK_SEARCH = 84
+Public Const VK_APP_SWITCH = 187
 
 Public Const VK_UP = 19
 Public Const VK_DOWN = 20
