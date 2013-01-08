@@ -26,6 +26,13 @@
                 adb.uninstall(frm.input_text.value)
             End Function
 
+            'アプリの設定画面を表示する
+            Function showSettings()
+                Dim frm
+                Set frm = document.uninstaller
+                adb.showSettings(frm.input_text.value)
+            End Function
+
             '文字列を入力する
             Function inputText()
                 Dim frm
@@ -129,6 +136,7 @@
             <input type="button" value="更新" OnClick="updatePackages" /><br />
             <input type="input" value="" name="input_text" style="width:300px" />
             <input type="button" value="アンインストール" OnClick="uninstallApp" />
+            <input type="button" value="設定画面" OnClick="showSettings" />
         </form>
         <h2>文字の入力</h2>
         <form name="adb_input" onSubmit="inputText(); return false;" language="jscript" class="form-horizontal" >

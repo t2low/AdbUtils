@@ -82,6 +82,11 @@ Class AdbUtli
         run(createCmd("uninstall") & packagename)
     End Function
 
+    'アプリの管理画面を表示する
+    Public Function showSettings(packagename)
+        run(createCmd("shell am start -a android.settings.APPLICATION_DETAILS_SETTINGS -d package:" & packagename))
+    End Function
+
     ' adb shell input textを実行する
     Public Function sendText(text)
         run(createCmd("shell input text") & text)
