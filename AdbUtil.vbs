@@ -85,6 +85,11 @@ Class AdbUtli
 
     'アプリの管理画面を表示する
     Public Function showSettings(packagename)
+        run(createCmd("shell am start -a android.intent.action.VIEW -n com.android.settings/.InstalledAppDetails --es pkg " & packagename))
+    End Function
+
+    'アプリの管理画面を表示する
+    Public Function showSettingsV9(packagename)
         run(createCmd("shell am start -a android.settings.APPLICATION_DETAILS_SETTINGS -d package:" & packagename))
     End Function
 

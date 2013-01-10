@@ -1,6 +1,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=9" />
         <link rel="stylesheet" href="adb_utils.css" type="text/css" />
         <script type="text/vbscript" src="AdbUtil.vbs"></script>
         <script language="vbscript">
@@ -31,6 +32,13 @@
                 Dim frm
                 Set frm = document.uninstaller
                 adb.showSettings(frm.input_text.value)
+            End Function
+
+            'アプリの設定画面を表示する
+            Function showSettingsV9()
+                Dim frm
+                Set frm = document.uninstaller
+                adb.showSettingsV9(frm.input_text.value)
             End Function
 
             '文字列を入力する
@@ -136,7 +144,8 @@
             <input type="button" value="更新" OnClick="updatePackages" /><br />
             <input type="input" value="" name="input_text" style="width:300px" />
             <input type="button" value="アンインストール" OnClick="uninstallApp" />
-            <input type="button" value="設定画面" OnClick="showSettings" />
+            <input type="button" value="設定画面(～2.2)" OnClick="showSettings" />
+            <input type="button" value="設定画面(2.3～)" OnClick="showSettingsV9" />
         </form>
         <h2>文字の入力</h2>
         <form name="adb_input" onSubmit="inputText(); return false;" language="jscript" class="form-horizontal" >
